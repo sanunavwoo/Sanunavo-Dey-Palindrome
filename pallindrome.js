@@ -10,38 +10,46 @@ checkBtn.addEventListener("click", ()=>
     console.log(dateVal);
     var dateStr= dateVal.replaceAll("-", "");
     console.log(dateStr);
-    
-    var allDatesformats= dateAllFormat(dateStr);
-   
-    //console.log(isPalindrome("2002"));
-    var palindromeResultArr=[];
-    for(var currentDateFormat=0; currentDateFormat<allDatesformats.length; currentDateFormat++)
-    {
-        //console.log(allDatesformats[currentDateFormat]);
-        //console.log(isPalindrome(allDatesformats[currentDateFormat].toString()));
-         palindromeResultArr.push(isPalindrome(allDatesformats[currentDateFormat].toString()));
-        
+    if(dateStr==0){
+        alert("Date cannot be left empty");
+
     }
-    //console.log(palindromeResultArr);
+    else{
+        var allDatesformats= dateAllFormat(dateStr);
+   
+        //console.log(isPalindrome("2002"));
+        var palindromeResultArr=[];
+        for(var currentDateFormat=0; currentDateFormat<allDatesformats.length; currentDateFormat++)
+        {
+            //console.log(allDatesformats[currentDateFormat]);
+            //console.log(isPalindrome(allDatesformats[currentDateFormat].toString()));
+             palindromeResultArr.push(isPalindrome(allDatesformats[currentDateFormat].toString()));
+            
+        }
+        //console.log(palindromeResultArr);
+        
+        showResult(palindromeResultArr);
     
-    showResult(palindromeResultArr);
+        
+        //--------find next date is pallindrone or not---------------
+        
+        var nextPalindromeDay= findNextDatePalindrome(dateStr)[1].slice(-2);
+        var nextPalindromeMonth= findNextDatePalindrome(dateStr)[1].slice(4,6);
+        var nextPalindromeYear= findNextDatePalindrome(dateStr)[1].slice(0,4);
+        
+        console.log("Next Palindrome date is: "+findNextDatePalindrome(dateStr)[0] + " days away, on : "+ nextPalindromeDay+"-"+nextPalindromeMonth+"-"+nextPalindromeYear+"(ddmmyyyy)");
+        nextResult.innerHTML= "Next Palindrome date is: "+findNextDatePalindrome(dateStr)[0] + " days away, on : "+ nextPalindromeDay+"-"+nextPalindromeMonth+"-"+nextPalindromeYear+"(ddmmyyyy)";
+        findPreviousDatePalindrome(dateStr)
+        var previousPalindromeDay= findPreviousDatePalindrome(dateStr)[1].slice(-2);
+        var previousPalindromeMonth= findPreviousDatePalindrome(dateStr)[1].slice(4,6);
+        var previousPalindromeYear= findPreviousDatePalindrome(dateStr)[1].slice(0,4);
+    
+        console.log("Previous Palindrome date is: "+findPreviousDatePalindrome(dateStr)[0] + " days earlier, on : "+ previousPalindromeDay+"-"+previousPalindromeMonth+"-"+previousPalindromeYear+"(ddmmyyyy)");
+        previousResult.innerHTML= "Previous Palindrome date was: "+findPreviousDatePalindrome(dateStr)[0] + " days earlier, on : "+ previousPalindromeDay+"-"+previousPalindromeMonth+"-"+previousPalindromeYear+"(ddmmyyyy)";
 
+    }
     
-    //--------find next date is pallindrone or not---------------
-    
-    var nextPalindromeDay= findNextDatePalindrome(dateStr)[1].slice(-2);
-    var nextPalindromeMonth= findNextDatePalindrome(dateStr)[1].slice(4,6);
-    var nextPalindromeYear= findNextDatePalindrome(dateStr)[1].slice(0,4);
-    
-    console.log("Next Palindrome date is: "+findNextDatePalindrome(dateStr)[0] + " days away, on : "+ nextPalindromeDay+"-"+nextPalindromeMonth+"-"+nextPalindromeYear+"(ddmmyyyy)");
-    nextResult.innerHTML= "Next Palindrome date is: "+findNextDatePalindrome(dateStr)[0] + " days away, on : "+ nextPalindromeDay+"-"+nextPalindromeMonth+"-"+nextPalindromeYear+"(ddmmyyyy)";
-    findPreviousDatePalindrome(dateStr)
-    var previousPalindromeDay= findPreviousDatePalindrome(dateStr)[1].slice(-2);
-    var previousPalindromeMonth= findPreviousDatePalindrome(dateStr)[1].slice(4,6);
-    var previousPalindromeYear= findPreviousDatePalindrome(dateStr)[1].slice(0,4);
 
-    console.log("Previous Palindrome date is: "+findPreviousDatePalindrome(dateStr)[0] + " days earlier, on : "+ previousPalindromeDay+"-"+previousPalindromeMonth+"-"+previousPalindromeYear+"(ddmmyyyy)");
-    previousResult.innerHTML= "Previous Palindrome date was: "+findPreviousDatePalindrome(dateStr)[0] + " days earlier, on : "+ previousPalindromeDay+"-"+previousPalindromeMonth+"-"+previousPalindromeYear+"(ddmmyyyy)";
 });
 
 function dateAllFormat(dateStr){
